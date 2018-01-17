@@ -1,0 +1,4 @@
+#!/bin/sh
+cd `dirname $0`
+ROOT_PATH=`pwd`
+java -Xms64M -Xmx256M -cp .:$ROOT_PATH:$ROOT_PATH/../lib/routines.jar:$ROOT_PATH/../lib/activation.jar:$ROOT_PATH/../lib/commons-codec-1.9.jar:$ROOT_PATH/../lib/jax-qname.jar:$ROOT_PATH/../lib/jaxen-1.1.1.jar:$ROOT_PATH/../lib/jaxp-api.jar:$ROOT_PATH/../lib/jaxp-ri.jar:$ROOT_PATH/../lib/log4j-1.2.16.jar:$ROOT_PATH/../lib/saaj-api-1.3.jar:$ROOT_PATH/../lib/saaj-impl-1.3.2.jar:$ROOT_PATH/../lib/xercesImpl.jar:$ROOT_PATH/../lib/dom4j-1.6.1.jar:$ROOT_PATH/../lib/talend-soap-2.0-20160927.jar:$ROOT_PATH/../lib/talendcsv.jar:$ROOT_PATH/../lib/jdom-1.1.jar:$ROOT_PATH/intranetwebservicesco2_0_1.jar: backup2.intranetwebservicesco2_0_1.intranetWebServicesCo2 --context=Default "$@" 

@@ -113,9 +113,21 @@ public class intranetWebServicesCo2 implements TalendJob {
 				
 			}
 			
-			if(outDir != null){
+			if(outputDir != null){
 				
-					this.setProperty("outDir", outDir.toString());
+					this.setProperty("outputDir", outputDir.toString());
+				
+			}
+			
+			if(intranetUsername != null){
+				
+					this.setProperty("intranetUsername", intranetUsername.toString());
+				
+			}
+			
+			if(intranetPassword != null){
+				
+					this.setProperty("intranetPassword", intranetPassword.toString());
 				
 			}
 			
@@ -129,9 +141,17 @@ public String tmpDir;
 public String getTmpDir(){
 	return this.tmpDir;
 }
-public String outDir;
-public String getOutDir(){
-	return this.outDir;
+public String outputDir;
+public String getOutputDir(){
+	return this.outputDir;
+}
+public String intranetUsername;
+public String getIntranetUsername(){
+	return this.intranetUsername;
+}
+public String intranetPassword;
+public String getIntranetPassword(){
+	return this.intranetPassword;
 }
 	}
 	private ContextProperties context = new ContextProperties();
@@ -456,7 +476,7 @@ class DeleteFoldertFileDelete_1{
     }
 
 }
-    java.io.File file_tFileDelete_1=new java.io.File(context.outDir + "/emas_co2.tsv");
+    java.io.File file_tFileDelete_1=new java.io.File(context.outputDir + "/emas_co2.tsv");
     if(file_tFileDelete_1.exists()&& file_tFileDelete_1.isFile()){
     	if(file_tFileDelete_1.delete()){
     		globalMap.put("tFileDelete_1_CURRENT_STATUS", "File deleted.");
@@ -466,7 +486,7 @@ class DeleteFoldertFileDelete_1{
     }else{
     	globalMap.put("tFileDelete_1_CURRENT_STATUS", "File does not exist or is invalid.");
 	}
-	globalMap.put("tFileDelete_1_DELETE_PATH",context.outDir + "/emas_co2.tsv");
+	globalMap.put("tFileDelete_1_DELETE_PATH",context.outputDir + "/emas_co2.tsv");
     
      
  
@@ -1308,11 +1328,7 @@ globalMap.put("tLoop_1_CURRENT_ITERATION",current_iteration_tLoop_1);
 	
 	
 					if(execStat){				
-	       				runStat.updateStatOnConnection("row19", 3, 0);
-					}           			
-				
-					if(execStat){				
-	       				runStat.updateStatOnConnection("row18", 3, 0);
+	       				runStat.updateStatOnConnection("row17", 3, 0);
 					}           			
 				
 					if(execStat){				
@@ -1320,7 +1336,11 @@ globalMap.put("tLoop_1_CURRENT_ITERATION",current_iteration_tLoop_1);
 					}           			
 				
 					if(execStat){				
-	       				runStat.updateStatOnConnection("row17", 3, 0);
+	       				runStat.updateStatOnConnection("row19", 3, 0);
+					}           			
+				
+					if(execStat){				
+	       				runStat.updateStatOnConnection("row18", 3, 0);
 					}           			
 				
 				if(execStat){
@@ -1369,7 +1389,7 @@ globalMap.put("tLoop_1_CURRENT_ITERATION",current_iteration_tLoop_1);
         new BytesLimit65535_tFileOutputDelimited_1().limitLog4jByte();
 
 String fileName_tFileOutputDelimited_1 = "";
-    fileName_tFileOutputDelimited_1 = (new java.io.File(context.outDir + "/emas_co2.tsv")).getAbsolutePath().replace("\\","/");
+    fileName_tFileOutputDelimited_1 = (new java.io.File(context.outputDir + "/emas_co2.tsv")).getAbsolutePath().replace("\\","/");
     String fullName_tFileOutputDelimited_1 = null;
     String extension_tFileOutputDelimited_1 = null;
     String directory_tFileOutputDelimited_1 = null;
@@ -1809,9 +1829,10 @@ XML_API_tExtractXMLField_5 xml_api_tExtractXMLField_5 = new XML_API_tExtractXMLF
         new BytesLimit65535_tSOAP_5().limitLog4jByte();
  org.talend.soap.SOAPUtil soapUtil_tSOAP_5 = new org.talend.soap.SOAPUtil();
 
- 
-	final String decryptedPassword_tSOAP_5 = routines.system.PasswordEncryptUtil.decryptPassword("f4f7aba1746784ea");
 
+	final String decryptedPassword_tSOAP_5 = context.intranetPassword; 
+
+soapUtil_tSOAP_5.setBasicAuth(context.intranetUsername,decryptedPassword_tSOAP_5);
  
 
 
@@ -2740,7 +2761,9 @@ end_Hash.put("tLoop_1", System.currentTimeMillis());
             }
                 context.serviceUrl=(String) context.getProperty("serviceUrl");
                 context.tmpDir=(String) context.getProperty("tmpDir");
-                context.outDir=(String) context.getProperty("outDir");
+                context.outputDir=(String) context.getProperty("outputDir");
+                context.intranetUsername=(String) context.getProperty("intranetUsername");
+                context.intranetPassword=(String) context.getProperty("intranetPassword");
         } catch (java.io.IOException ie) {
             System.err.println("Could not load context "+contextStr);
             ie.printStackTrace();
@@ -2752,8 +2775,12 @@ end_Hash.put("tLoop_1", System.currentTimeMillis());
                 context.serviceUrl = (String) parentContextMap.get("serviceUrl");
             }if (parentContextMap.containsKey("tmpDir")) {
                 context.tmpDir = (String) parentContextMap.get("tmpDir");
-            }if (parentContextMap.containsKey("outDir")) {
-                context.outDir = (String) parentContextMap.get("outDir");
+            }if (parentContextMap.containsKey("outputDir")) {
+                context.outputDir = (String) parentContextMap.get("outputDir");
+            }if (parentContextMap.containsKey("intranetUsername")) {
+                context.intranetUsername = (String) parentContextMap.get("intranetUsername");
+            }if (parentContextMap.containsKey("intranetPassword")) {
+                context.intranetPassword = (String) parentContextMap.get("intranetPassword");
             }
         }
 
@@ -2965,6 +2992,6 @@ if (execStat) {
     ResumeUtil resumeUtil = null;
 }
 /************************************************************************************************
- *     78453 characters generated by Talend Open Studio for Big Data 
- *     on the 17 January 2018 17:07:34 CET
+ *     79518 characters generated by Talend Open Studio for Big Data 
+ *     on the 17 January 2018 17:30:07 CET
  ************************************************************************************************/

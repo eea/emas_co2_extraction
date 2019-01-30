@@ -157,7 +157,7 @@
     <elementParameter field="CHECK" name="OUTPUT_DOCUMENT" value="false"/>
     <elementParameter field="CHECK" name="USE_KERBEROS" value="false"/>
     <elementParameter field="COMPONENT_LIST" name="KERBEROS_CONFIGURATION" value="" show="false"/>
-    <elementParameter field="CHECK" name="ENFORCE_NTLM" value="false"/>
+    <elementParameter field="CHECK" name="ENFORCE_NTLM" value="true"/>
     <elementParameter field="TEXT" name="LABEL" value="ExportEmasCO2XML"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tSOAP_5">

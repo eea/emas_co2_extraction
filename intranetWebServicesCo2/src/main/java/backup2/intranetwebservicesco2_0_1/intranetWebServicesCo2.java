@@ -1328,11 +1328,11 @@ globalMap.put("tLoop_1_CURRENT_ITERATION",current_iteration_tLoop_1);
 	
 	
 					if(execStat){				
-	       				runStat.updateStatOnConnection("row17", 3, 0);
+	       				runStat.updateStatOnConnection("row18", 3, 0);
 					}           			
 				
 					if(execStat){				
-	       				runStat.updateStatOnConnection("row20", 3, 0);
+	       				runStat.updateStatOnConnection("row17", 3, 0);
 					}           			
 				
 					if(execStat){				
@@ -1340,7 +1340,7 @@ globalMap.put("tLoop_1_CURRENT_ITERATION",current_iteration_tLoop_1);
 					}           			
 				
 					if(execStat){				
-	       				runStat.updateStatOnConnection("row18", 3, 0);
+	       				runStat.updateStatOnConnection("row20", 3, 0);
 					}           			
 				
 				if(execStat){
@@ -1792,6 +1792,135 @@ XML_API_tExtractXMLField_5 xml_api_tExtractXMLField_5 = new XML_API_tExtractXMLF
     	
         new BytesLimit65535_tLogRow_6().limitLog4jByte();
 
+	///////////////////////
+	
+         class Util_tLogRow_6 {
+
+        String[] des_top = { ".", ".", "-", "+" };
+
+        String[] des_head = { "|=", "=|", "-", "+" };
+
+        String[] des_bottom = { "'", "'", "-", "+" };
+
+        String name="";
+
+        java.util.List<String[]> list = new java.util.ArrayList<String[]>();
+
+        int[] colLengths = new int[3];
+
+        public void addRow(String[] row) {
+
+            for (int i = 0; i < 3; i++) {
+                if (row[i]!=null) {
+                  colLengths[i] = Math.max(colLengths[i], row[i].length());
+                }
+            }
+            list.add(row);
+        }
+
+        public void setTableName(String name) {
+
+            this.name = name;
+        }
+
+            public StringBuilder format() {
+            
+                StringBuilder sb = new StringBuilder();
+  
+            
+                    sb.append(print(des_top));
+    
+                    int totals = 0;
+                    for (int i = 0; i < colLengths.length; i++) {
+                        totals = totals + colLengths[i];
+                    }
+    
+                    // name
+                    sb.append("|");
+                    int k = 0;
+                    for (k = 0; k < (totals + 2 - name.length()) / 2; k++) {
+                        sb.append(' ');
+                    }
+                    sb.append(name);
+                    for (int i = 0; i < totals + 2 - name.length() - k; i++) {
+                        sb.append(' ');
+                    }
+                    sb.append("|\n");
+
+                    // head and rows
+                    sb.append(print(des_head));
+                    for (int i = 0; i < list.size(); i++) {
+    
+                        String[] row = list.get(i);
+    
+                        java.util.Formatter formatter = new java.util.Formatter(new StringBuilder());
+                        
+                        StringBuilder sbformat = new StringBuilder();                                             
+        			        sbformat.append("|%1$-");
+        			        sbformat.append(colLengths[0]);
+        			        sbformat.append("s");
+        			              
+        			        sbformat.append("|%2$-");
+        			        sbformat.append(colLengths[1]);
+        			        sbformat.append("s");
+        			              
+        			        sbformat.append("|%3$-");
+        			        sbformat.append(colLengths[2]);
+        			        sbformat.append("s");
+        			                      
+                        sbformat.append("|\n");                    
+       
+                        formatter.format(sbformat.toString(), (Object[])row);	
+                                
+                        sb.append(formatter.toString());
+                        if (i == 0)
+                            sb.append(print(des_head)); // print the head
+                    }
+    
+                    // end
+                    sb.append(print(des_bottom));
+                    return sb;
+                }
+            
+
+            private StringBuilder print(String[] fillChars) {
+                StringBuilder sb = new StringBuilder();
+                //first column
+                sb.append(fillChars[0]);                
+                    for (int i = 0; i < colLengths[0] - fillChars[0].length() + 1; i++) {
+                        sb.append(fillChars[2]);
+                    }
+                    sb.append(fillChars[3]);	                
+
+                    for (int i = 0; i < colLengths[1] - fillChars[3].length() + 1; i++) {
+                        sb.append(fillChars[2]);
+                    }
+                    sb.append(fillChars[3]);
+                
+                    //last column
+                    for (int i = 0; i < colLengths[2] - fillChars[1].length() + 1; i++) {
+                        sb.append(fillChars[2]);
+                    }         
+                sb.append(fillChars[1]);
+                sb.append("\n");               
+                return sb;
+            }
+            
+            public boolean isTableEmpty(){
+            	if (list.size() > 1)
+            		return false;
+            	return true;
+            }
+        }
+        Util_tLogRow_6 util_tLogRow_6 = new Util_tLogRow_6();
+        util_tLogRow_6.setTableName("tLogRow_6");
+        util_tLogRow_6.addRow(new String[]{"Header","Body","Fault",});        
+ 		StringBuilder strBuffer_tLogRow_6 = null;
+		int nb_line_tLogRow_6 = 0;
+///////////////////////    			
+
+
+
  
 
 
@@ -1832,7 +1961,7 @@ XML_API_tExtractXMLField_5 xml_api_tExtractXMLField_5 = new XML_API_tExtractXMLF
 
 	final String decryptedPassword_tSOAP_5 = context.intranetPassword; 
 
-soapUtil_tSOAP_5.setBasicAuth(context.intranetUsername,decryptedPassword_tSOAP_5);
+soapUtil_tSOAP_5.setNTLMAuth("eea.europa.eu",context.intranetUsername,decryptedPassword_tSOAP_5);
  
 
 
@@ -1907,6 +2036,41 @@ soapUtil_tSOAP_5.setBasicAuth(context.intranetUsername,decryptedPassword_tSOAP_5
 			
 
 		
+///////////////////////		
+						
+
+				
+				String[] row_tLogRow_6 = new String[3];
+   				
+	    		if(row20.Header != null) { //              
+                 row_tLogRow_6[0]=    						    
+				                String.valueOf(row20.Header)			
+					          ;	
+							
+	    		} //			
+    			   				
+	    		if(row20.Body != null) { //              
+                 row_tLogRow_6[1]=    						    
+				                String.valueOf(row20.Body)			
+					          ;	
+							
+	    		} //			
+    			   				
+	    		if(row20.Fault != null) { //              
+                 row_tLogRow_6[2]=    						    
+				                String.valueOf(row20.Fault)			
+					          ;	
+							
+	    		} //			
+    			 
+
+				util_tLogRow_6.addRow(row_tLogRow_6);	
+				nb_line_tLogRow_6++;
+//////
+
+//////                    
+                    
+///////////////////////    			
 
  
      row17 = row20;
@@ -2262,6 +2426,28 @@ end_Hash.put("tSOAP_5", System.currentTimeMillis());
 	currentComponent="tLogRow_6";
 
 	
+
+
+//////
+
+                    
+                    java.io.PrintStream consoleOut_tLogRow_6 = null;
+                    if (globalMap.get("tLogRow_CONSOLE")!=null)
+                    {
+                    	consoleOut_tLogRow_6 = (java.io.PrintStream) globalMap.get("tLogRow_CONSOLE");
+                    }
+                    else
+                    {
+                    	consoleOut_tLogRow_6 = new java.io.PrintStream(new java.io.BufferedOutputStream(System.out));
+                    	globalMap.put("tLogRow_CONSOLE",consoleOut_tLogRow_6);
+                    }
+                    
+                    consoleOut_tLogRow_6.println(util_tLogRow_6.format().toString());
+                    consoleOut_tLogRow_6.flush();
+//////
+globalMap.put("tLogRow_6_NB_LINE",nb_line_tLogRow_6);
+
+///////////////////////    			
 
 			if(execStat){
 				if(resourceMap.get("inIterateVComp") == null || !((Boolean)resourceMap.get("inIterateVComp"))){
@@ -2992,6 +3178,6 @@ if (execStat) {
     ResumeUtil resumeUtil = null;
 }
 /************************************************************************************************
- *     79518 characters generated by Talend Open Studio for Big Data 
- *     on the 17 January 2018 17:30:07 CET
+ *     85859 characters generated by Talend Open Studio for Big Data 
+ *     on the 30 January 2019 10:42:53 CET
  ************************************************************************************************/

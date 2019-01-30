@@ -3,7 +3,7 @@
   <context confirmationNeeded="false" name="Default">
     <contextParameter comment="" name="serviceUrl" prompt="serviceUrl?" promptNeeded="false" type="id_String" value="&quot;http://applications/managementplan/exportdata.asmx&quot;"/>
     <contextParameter comment="" name="tmpDir" prompt="tmpDir?" promptNeeded="false" type="id_String" value="emas"/>
-    <contextParameter comment="" name="outputDir" prompt="outputDir?" promptNeeded="false" type="id_String" value=""/>
+    <contextParameter comment="" name="outputDir" prompt="outputDir?" promptNeeded="false" type="id_String" value="&quot;d:/emas/co2&quot;"/>
     <contextParameter comment="" name="intranetUsername" prompt="intranetUsername?" promptNeeded="false" type="id_String" value=""/>
     <contextParameter comment="" name="intranetPassword" prompt="intranetPassword?" promptNeeded="false" type="id_String" value=""/>
   </context>
@@ -135,8 +135,8 @@
   </node>
   <node componentName="tSOAP" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="352" posY="192">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tSOAP_5" show="false"/>
-    <elementParameter field="CHECK" name="USE_NTLM" value="false"/>
-    <elementParameter field="TEXT" name="NTLM_DOMAIN" value="&quot;192.168.0.100&quot;" show="false"/>
+    <elementParameter field="CHECK" name="USE_NTLM" value="true"/>
+    <elementParameter field="TEXT" name="NTLM_DOMAIN" value="&quot;eea.europa.eu&quot;"/>
     <elementParameter field="CHECK" name="NEED_AUTH" value="true"/>
     <elementParameter field="TEXT" name="AUTH_USERNAME" value="context.intranetUsername"/>
     <elementParameter field="PASSWORD" name="AUTH_PASSWORD" value="8pW6Nmy2kucC5/4dCQjSF/2xBb0s36hs0Ocjr0tF/UY="/>
@@ -157,7 +157,7 @@
     <elementParameter field="CHECK" name="OUTPUT_DOCUMENT" value="false"/>
     <elementParameter field="CHECK" name="USE_KERBEROS" value="false"/>
     <elementParameter field="COMPONENT_LIST" name="KERBEROS_CONFIGURATION" value="" show="false"/>
-    <elementParameter field="CHECK" name="ENFORCE_NTLM" value="false" show="false"/>
+    <elementParameter field="CHECK" name="ENFORCE_NTLM" value="false"/>
     <elementParameter field="TEXT" name="LABEL" value="ExportEmasCO2XML"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tSOAP_5">
@@ -168,8 +168,6 @@
   </node>
   <node componentName="tLogRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="512" posY="192">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tLogRow_6" show="false"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
-    <elementParameter field="CHECK" name="DUMMY" value="true" show="false"/>
     <elementParameter field="RADIO" name="BASIC_MODE" value="false"/>
     <elementParameter field="RADIO" name="TABLE_PRINT" value="true"/>
     <elementParameter field="RADIO" name="VERTICAL" value="false"/>
